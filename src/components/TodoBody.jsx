@@ -52,8 +52,8 @@ export function TodoBody() {
     return formattedDate;
   }
   return (
-    <main className="flex items-center flex-col mt-11">
-      <div className="bg-white py-6 px-6 rounded-md ">
+    <main className="flex items-center flex-col mt-11 ">
+      <div className="bg-white py-6 px-6 rounded-md">
         <div>
           <h1 className="text-gray-400 font-medium mb-10">{date()}</h1>
           <label
@@ -67,7 +67,7 @@ export function TodoBody() {
               type="text"
               id="price"
               value={inputValue}
-              className="block w-full rounded-l-md border-0 py-1.5 pl-7 pr-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 shadow-inner"
+              className="block rounded-l-md border-0 py-1.5 pl-7 pr-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 shadow-inner w-96"
               placeholder="Add your task"
               onChange={(event) => setInputValue(event.target.value)}
               onKeyDown={(event) => {
