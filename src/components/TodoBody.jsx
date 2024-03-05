@@ -105,4 +105,3 @@ export function TodoBody() {
     </main>
   );
 }
-// correct my observation without telling what do to next. basically just tell me is the way I am observing this code is correctly interpret? than I go to the next part than tell you more of my observation so that you can correct me again. basically no spoiler of what to do next. only answer within the context of what I wrote.
