@@ -1,33 +1,10 @@
 import React from "react";
 import "../index.css";
+import TasksAppendBody from "./TodoTasks";
 
-export function TodoList() {
+export function TodoBody() {
   const [tasks, setTasks] = React.useState([]);
   const [inputValue, setInputValue] = React.useState("");
-  function TasksBody(props) {
-    return (
-      <>
-        <div className="added-task-grp flex mt-4">
-          <input
-            type="text"
-            id="price"
-            className="block rounded-l-md border-0 pl-7 pr-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 shadow-sm "
-            value={props.task}
-            disabled={props.enable}
-          />
-          <button
-            className="del-btn bg-white hover:bg-gray-100 text-red-600 font-semibold py-2 px-4 border border-inherit shadow "
-            onClick={props.onRemove}
-          >
-            {props.del}
-          </button>
-          <button className="bg-white hover:bg-gray-100 text-blue-400 font-semibold py-2 px-4 border border-inherit rounded-r-md shadow">
-            {props.edit}
-          </button>
-        </div>
-      </>
-    );
-  }
 
   function addTask() {
     const id = Date.now();
@@ -51,13 +28,34 @@ export function TodoList() {
     setTasks((prevTask) => prevTask.filter((item) => item.id !== id));
   }
 
+  function handleEdit(id, newUserInput) {
+    setTasks((prevTask) => {
+      return prevTask.map((task) => {
+        if (task.id === id) {
+          return { ...task, task: newUserInput };
+        } else {
+          return task;
+        }
+      });
+    });
+  }
+
+  function date() {
+    let today = new Date();
+    let options = {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    let formattedDate = today.toLocaleDateString("en-US", options);
+    return formattedDate;
+  }
   return (
     <main className="flex items-center flex-col mt-11">
       <div className="bg-white py-6 px-6 rounded-md ">
-        <h1 className="font-medium text-center text-gray-800 mb-2 ">
-          To-Do List
-        </h1>
         <div>
+          <h1 className="text-gray-400 font-medium mb-10">{date()}</h1>
           <label
             htmlFor="price"
             className="block font-medium text-gray-800 mb-2"
@@ -92,13 +90,14 @@ export function TodoList() {
         <div className="flex flex-col mt-2">
           <h1 className="mt-2 text-gray-400 font-medium">Added Tasks</h1>
           {tasks.map((task) => (
-            <TasksBody
+            <TasksAppendBody
               key={task.id}
               del="Del"
+              id={task.id}
               edit="Edit"
               task={task.task}
               onRemove={() => removeItem(task.id)}
-              enable={true}
+              onEdit={handleEdit}
             />
           ))}
         </div>
@@ -106,3 +105,4 @@ export function TodoList() {
     </main>
   );
 }
+// correct my observation without telling what do to next. basically just tell me is the way I am observing this code is correctly interpret? than I go to the next part than tell you more of my observation so that you can correct me again. basically no spoiler of what to do next. only answer within the context of what I wrote.
